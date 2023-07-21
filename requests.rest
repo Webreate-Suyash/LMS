@@ -1,0 +1,149 @@
+
+//Register from admin panel
+//Login by the user
+//Apply leave
+//Send Grievances to admin
+//send notice to users
+//Show Count of Notice to user
+//show count of notification(Leave approval,If anyone have changed their details of bank account and anyone sent grievances)
+//Show notification to admin and sending approval for leave
+//Update account details and sending notification to admin by user
+//Update personal email and mobile
+//Forgot password by user with verification
+//Getting new refresh token
+//Getting all employees details at admin panel
+###
+POST http://localhost:8000/api/admin/register
+Content-Type: application/json
+
+{
+    "email": "suyashsinghal@webreate.com",
+    "password": "Suyash@123",
+    "repeatPassword":"Suyash@123",
+    "name": "suyash singhal",
+    "mobile": "9897202909",
+    "personal_email": "SUYASHSINGHAL@gmail.com",
+    "acc_no": "51462122012048",
+    "confirm_acc_no":"51462122012048",
+    "ifsc": "PUNB0514610",
+    "bank_name": "Punjab National Bank",
+    "dob": "22-02-2000",
+    "department":"Backend Developer",
+    "location": "working_from_office",
+    "p_name": "suyash singhal"
+}
+###
+POST http://localhost:8000/api/user/login
+Content-Type: application/json
+
+{
+    "email": "suyashsinghal@webreate.com",
+    "password": "Suyash@123"
+}
+
+###
+POST http://localhost:8000/api/Leave/leave
+Content-Type: application/json
+
+{
+    "start_date": "2023-02-22",
+    "end_date":"'2023-02-23'",
+    "reason":"due to lorem cnjnckjwdnckj",
+    "category":"medical"
+} 
+
+
+###
+POST http://localhost:8000/api/user/grievances
+Content-Type: application/json
+
+{
+    "to": "admin@webreate.com",
+    "cc":"hr@webreate.com",
+    "subject":"webreate",
+    "message":"i am happy"
+} 
+###
+POST http://localhost:8000/api/admin/notice
+Content-Type: application/json
+
+{ 
+    "email":"suyashsinghal@webreate.com",
+    "subject":"webreate",
+    "message":"i am happy",
+    "name": "suyash singhal"
+} 
+
+###
+GET http://localhost:8000/api/admin/count
+###
+GET http://localhost:8000/api/user/count
+###
+GET http://localhost:8000/api/user/notice
+###
+GET http://localhost:8000/api/admin/notification
+
+###
+POST http://localhost:8000/api/user/notice
+Content-Type: application/json
+
+{
+    "mark_as_read": true,
+    "id": "2"
+}
+
+###
+POST http://localhost:8000/api/admin/notification
+Content-Type: application/json
+
+{
+    "id": "8",
+    "email": "suyashsinghal@webreate.com",
+    "subject":"Leave.",
+    "mark_as_read": true,
+    "token": true
+    
+}
+
+###
+PUT http://localhost:8000/api/user/updateAccDetails
+Content-Type: application/json
+
+{
+    "acc_no": "514612928797697",
+    "confirm_acc_no": "514612928797697",
+    "ifsc": "dwecccced",
+    "bank_name":"state bi",
+    "name":"suyashhhh"
+    
+}
+
+###
+PUT http://localhost:8000/api/user/updateUserDetails
+Content-Type: application/json
+
+{
+    "mobile":"9872029022",
+    "personal_email": "SUYASHSINGHALL@gmail.com"
+    
+}
+
+
+###
+PUT http://localhost:8000/api/user/forgot_password
+Content-Type: application/json
+
+{
+    "email": "suyashsinghal@webreate.com",
+    "password": "Suyash@123",
+    "repeatPassword":"Suyash@123"
+}
+
+###
+GET http://localhost:8000/api/user/refresh_token
+
+###
+DELETE http://localhost:8000/api/user/refresh_token
+###
+GET  http://localhost:8000/api/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk4ZDc1OTFjLTQ1NjktNGQwYi1iNzQwLTg4NGQ5ZmE0MWZiYSIsImVtcGlkIjo2LCJuYW1lIjoic3V5YXNoaGhoIiwiZW1haWwiOiJzdXlhc2hzaW5naGFsQHdlYnJlYXRlLmNvbSIsImlhdCI6MTY4ODgxNzcyMiwiZXhwIjoxNjg4OTA0MTIyfQ.Q2kZBC1ItiMHjwmQVEqZsWNvqBKKIBl_cW7WegpRtdI
