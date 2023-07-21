@@ -1,0 +1,113 @@
+CREATE TABLE users(Id UUID default uuid_generate_v4() Primary KEY,
+empid serial,
+email text not null,
+password text not null,
+name text not null,
+token boolean,
+mobile varchar(10),
+dob Date,
+department text,
+personal_email text,
+working_from_home boolean);
+
+
+
+CREATE TABLE payment(Id uuid,
+empid int not null,
+p_name text not null,
+acc_no varchar(20),
+ifsc varchar(15),
+bank_name text,
+token boolean,
+salary int[],
+credit_date Date[]);
+
+CREATE TABLE leave(Id uuid,
+empid int not null,
+name text not null,
+email text not null,
+start_date Date[],
+end_date Date[],
+reason text[],
+no_of_days int[],
+paid_remaining_leave int,
+unpaid_remaining_leave int,
+total_paid_leave int,
+total_unpaid_leave int,
+approval boolean[]);
+
+-- //notification for admin
+CREATE TABLE notification(subject text,
+name text,
+email text,
+message text,
+mark_as_read boolean,
+approval boolean,id serial,date text);
+
+--// notice for user
+CREATE TABLE notice(email text,
+subject text,
+name text,
+message text,
+mark_as_read boolean,id serial,date text);
+
+
+
+CREATE TABLE project(project_id serial Primary key,
+project_name varchar(50),
+project_type varchar(50),
+description text,
+assigned_to_email text[],
+due_date Date,
+project_head_email text,
+assigned_date Date,
+no_of_tasks int,
+status varchar(20));
+
+CREATE TABLE main_task (
+  task_id SERIAL PRIMARY KEY,
+  project_id INTEGER REFERENCES project (project_id),
+  task_name VARCHAR(255),
+  description TEXT,
+  due_date DATE,
+  time_estimated Time,
+  start_date text,
+  end_date text,
+  task_status VARCHAR(50),
+  timer time,
+  total_time_taken time
+);
+
+
+CREATE TABLE subtasks (
+  id SERIAL PRIMARY KEY,
+  subtask_id INTEGER REFERENCES main_task (task_id),
+  subtask_name VARCHAR(255),
+  description TEXT,
+  due_date DATE,
+  time_estimated Time,
+  start_date text,
+  end_date text,
+  task_status VARCHAR(50),
+  timer time,
+  total_time_taken time
+);
+
+CREATE TABLE attendance(
+    Id uuid,
+    empid int,
+    email text,
+    name text,
+    date Date,
+    login time,
+    login_status boolean,
+    logout time,
+    logout_status boolean,
+    break_in time[],
+    break_out time[],
+    total_working_time time,
+    total_break_time time,
+    break_time time[],
+    break_in_status boolean,
+    break_out_status boolean
+)
